@@ -55,14 +55,13 @@ function App() {
         element: elementRef.current,
         defaultOptions: {
           orientation: Enums.OrientationAxis.SAGITTAL,
-          background: [0.2, 0, 0.2],
         },
       }
 
       renderingEngine.enableElement(viewportInput)
 
       // Get the stack viewport that was created
-      const viewport = renderingEngine.getViewport(viewportId)
+      const viewport = renderingEngine.getViewport(viewportId) as Types.IVolumeViewport
 
       // Define a volume in memory
       const volumeId = "myVolume"
