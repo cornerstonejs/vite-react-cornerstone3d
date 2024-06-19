@@ -1,14 +1,17 @@
 import { defineConfig, searchForWorkspaceRoot } from "vite"
 import react from "@vitejs/plugin-react"
-import wasm from "vite-plugin-wasm"
+
+// IMPORTANT: use the rollup wasm since vite use rollup for the build
+// and esbuild during the dev and the rollup plugin seems to work
+// for both dev and build
 import wasmRollup from "@rollup/plugin-wasm"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), wasm(), wasmRollup()],
+  plugins: [react(), wasmRollup()],
   worker: {
     format: "es",
-    plugins: () => [wasm(), wasmRollup()],
+    plugins: () => [wasmRollup()],
   },
   server: {
     fs: {
