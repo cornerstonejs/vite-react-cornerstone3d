@@ -1,35 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState, useRef } from "react"
+import { createImageIdsAndCacheMetaData, initDemo } from "./lib"
+import { RenderingEngine, Enums, type Types } from "@cornerstonejs/core"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const elementRef = useRef<HTMLDivElement>(null)
+  const running = useRef(false)
+
+  useEffect(() => {
+    const setup = async () => {
+      if (running.current) {
+        return
+      }
+      running.current = true
+      await initDemo()
+
+      // Get Cornerstone imageIds and fetch metadata into RAM
+      const imageIds = await createImageIdsAndCacheMetaData({
+        StudyInstanceUID:
+          "1.3.6.1.4.1.14519.5.2.1.7009.2403.334240657131972136850343327463",
+        SeriesInstanceUID:
+          "1.3.6.1.4.1.14519.5.2.1.7009.2403.226151125820845824875394858561",
+        wadoRsRoot: "https://d3t6nz73ql33tx.cloudfront.net/dicomweb",
+      })
+
+      // Instantiate a rendering engine
+      const renderingEngineId = "myRenderingEngine"
+      const renderingEngine = new RenderingEngine(renderingEngineId)
+
+      const viewportId = "CT_STACK"
+      const viewportInput = {
+        viewportId,
+        type: Enums.ViewportType.STACK,
+        element: elementRef.current,
+        defaultOptions: {
+          background: [0.2, 0, 0.2] as Types.RGB,
+        },
+      }
+
+      renderingEngine.enableElement(viewportInput)
+
+      const viewport = renderingEngine.getViewport(
+        viewportId
+      ) as Types.IStackViewport
+
+      const stack = [imageIds[0]]
+
+      viewport.setStack(stack)
+
+      viewport.render()
+    }
+
+    setup()
+
+    // Create a stack viewport
+  }, [elementRef, running])
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div
+      ref={elementRef}
+      style={{
+        width: "512px",
+        height: "512px",
+        backgroundColor: "#000",
+      }}
+    >
+    </div>
   )
+
 }
 
 export default App
