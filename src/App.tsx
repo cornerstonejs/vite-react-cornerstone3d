@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import { createImageIdsAndCacheMetaData, initDemo } from "./lib"
-import { RenderingEngine, Enums, type Types } from "@cornerstonejs/core"
+import { RenderingEngine, Enums, type Types, volumeLoader } from "@cornerstonejs/core"
 
 function App() {
   const elementRef = useRef<HTMLDivElement>(null)
@@ -26,27 +26,57 @@ function App() {
       // Instantiate a rendering engine
       const renderingEngineId = "myRenderingEngine"
       const renderingEngine = new RenderingEngine(renderingEngineId)
-
       const viewportId = "CT_STACK"
+
+      // const viewportInput = {
+      //   viewportId,
+      //   type: Enums.ViewportType.STACK,
+      //   element: elementRef.current,
+      //   defaultOptions: {
+      //     background: [0.2, 0, 0.2] as Types.RGB,
+      //   },
+      // }
+
+      // renderingEngine.enableElement(viewportInput)
+
+      // const viewport = renderingEngine.getViewport(
+      //   viewportId
+      // ) as Types.IStackViewport
+
+      // const stack = [imageIds[0]]
+
+      // viewport.setStack(stack)
+
+      // viewport.render()
+
       const viewportInput = {
         viewportId,
-        type: Enums.ViewportType.STACK,
+        type: Enums.ViewportType.ORTHOGRAPHIC,
         element: elementRef.current,
         defaultOptions: {
-          background: [0.2, 0, 0.2] as Types.RGB,
+          orientation: Enums.OrientationAxis.SAGITTAL,
+          background: [0.2, 0, 0.2],
         },
       }
 
       renderingEngine.enableElement(viewportInput)
 
-      const viewport = renderingEngine.getViewport(
-        viewportId
-      ) as Types.IStackViewport
+      // Get the stack viewport that was created
+      const viewport = renderingEngine.getViewport(viewportId)
 
-      const stack = [imageIds[0]]
+      // Define a volume in memory
+      const volumeId = "myVolume"
+      const volume = await volumeLoader.createAndCacheEmptyVolume(volumeId, {
+        imageIds,
+      })
 
-      viewport.setStack(stack)
+      // Set the volume to load
+      volume.load()
 
+      // Set the volume on the viewport and it's default properties
+      viewport.setVolumes([{ volumeId}])
+
+      // Render the image
       viewport.render()
     }
 
@@ -63,10 +93,8 @@ function App() {
         height: "512px",
         backgroundColor: "#000",
       }}
-    >
-    </div>
+    ></div>
   )
-
 }
 
 export default App

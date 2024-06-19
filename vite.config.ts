@@ -21,5 +21,10 @@ export default defineConfig({
         "/Users/alireza/dev/admin/cornerstone3D.git.worktrees/beta/node_modules/@cornerstonejs/codec-charls",
       ],
     },
+    // set the cross-origin resource sharing headers
+    headers: {
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "Cross-Origin-Embedder-Policy": "require-corp",
+    },
   },
 })
