@@ -13,5 +13,15 @@ export default defineConfig({
       "Cross-Origin-Embedder-Policy": "require-corp",
     },
   },
+  // seems like only required in dev mode
+  optimizeDeps: {
+    exclude: [
+      "@cornerstonejs/dicom-image-loader",
+      "@cornerstonejs/codec-charls",
+      "@cornerstonejs/codec-libjpeg-turbo-8bit",
+      "@cornerstonejs/codec-openjpeg",
+      "@cornerstonejs/codec-openjph",
+    ],
+  },
   assetsInclude: ["**/*.wasm"],
 })
