@@ -1,6 +1,12 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect,  useRef } from "react"
 import { createImageIdsAndCacheMetaData, initDemo } from "./lib"
-import { RenderingEngine, Enums, type Types, volumeLoader } from "@cornerstonejs/core"
+import { RenderingEngine, Enums, type Types, volumeLoader, cornerstoneStreamingImageVolumeLoader } from "@cornerstonejs/core"
+
+volumeLoader.registerUnknownVolumeLoader(
+  cornerstoneStreamingImageVolumeLoader 
+)
+
+
 
 function App() {
   const elementRef = useRef<HTMLDivElement>(null)
@@ -49,6 +55,10 @@ function App() {
 
       // viewport.render()
 
+      // setTimeout(() => {
+      //   viewport.render()
+      // }, 1000)
+
       const viewportInput = {
         viewportId,
         type: Enums.ViewportType.ORTHOGRAPHIC,
@@ -64,8 +74,8 @@ function App() {
       const viewport = renderingEngine.getViewport(viewportId) as Types.IVolumeViewport
 
       // Define a volume in memory
-      const volumeId = "myVolume"
-      const volume = await volumeLoader.createAndCacheEmptyVolume(volumeId, {
+      const volumeId = "streamingImageVolume"
+      const volume = await volumeLoader.createAndCacheVolume(volumeId, {
         imageIds,
       })
 
