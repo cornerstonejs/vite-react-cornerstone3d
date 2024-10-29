@@ -1,11 +1,11 @@
 import { useEffect,  useRef } from "react"
 import { createImageIdsAndCacheMetaData, initDemo } from "./lib"
 import { RenderingEngine, Enums, type Types, volumeLoader, cornerstoneStreamingImageVolumeLoader } from "@cornerstonejs/core"
+import * as cornerstone from "@cornerstonejs/core"
 
 volumeLoader.registerUnknownVolumeLoader(
   cornerstoneStreamingImageVolumeLoader 
 )
-
 
 
 function App() {
@@ -87,6 +87,7 @@ function App() {
 
       // Render the image
       viewport.render()
+
     }
 
     setup()

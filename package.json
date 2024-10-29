@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@cornerstonejs/calculate-suv": "1.1.0",
-    "@cornerstonejs/core": "2.0.0-beta.30",
-    "@cornerstonejs/dicom-image-loader": "2.0.0-beta.30",
-    "@cornerstonejs/tools": "2.0.0-beta.30",
+    "@cornerstonejs/core": "2.0.2",
+    "@cornerstonejs/dicom-image-loader": "2.0.2",
+    "@cornerstonejs/tools": "2.0.2",
     "dcmjs": "0.33.0",
     "dicom-parser": "1.8.21",
     "dicomweb-client": "0.10.4",
