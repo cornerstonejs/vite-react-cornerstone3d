@@ -35,19 +35,8 @@ export default defineConfig({
     // for dicom-parser
     viteCommonjs(),
   ],
-  worker: {
-    format: "es",
-  },
-  // seems like only required in dev mode
   optimizeDeps: {
-    exclude: [
-      "@cornerstonejs/dicom-image-loader",
-      "@cornerstonejs/codec-charls",
-      "@cornerstonejs/codec-libjpeg-turbo-8bit",
-      "@cornerstonejs/codec-openjpeg",
-      "@cornerstonejs/codec-openjph",
-    ],
+    exclude: ["@cornerstonejs/dicom-image-loader"],
     include: ["dicom-parser"],
   },
-  assetsInclude: ["**/*.wasm"],
 })
