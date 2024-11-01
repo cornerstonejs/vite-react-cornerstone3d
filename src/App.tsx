@@ -1,12 +1,14 @@
 import { useEffect,  useRef } from "react"
-import { createImageIdsAndCacheMetaData, initDemo } from "./lib"
+import createImageIdsAndCacheMetaData  from "./lib/createImageIdsAndCacheMetaData"
 import { RenderingEngine, Enums, type Types, volumeLoader, cornerstoneStreamingImageVolumeLoader } from "@cornerstonejs/core"
-import * as cornerstone from "@cornerstonejs/core"
+import {init as csRenderInit} from "@cornerstonejs/core"
+import {init as csToolsInit} from "@cornerstonejs/tools"
+import {init as dicomImageLoaderInit} from "@cornerstonejs/dicom-image-loader"
+
 
 volumeLoader.registerUnknownVolumeLoader(
   cornerstoneStreamingImageVolumeLoader 
 )
-
 
 function App() {
   const elementRef = useRef<HTMLDivElement>(null)
@@ -18,7 +20,10 @@ function App() {
         return
       }
       running.current = true
-      await initDemo()
+      
+      await csRenderInit()
+      await csToolsInit()
+      dicomImageLoaderInit({maxWebWorkers:1})
 
       // Get Cornerstone imageIds and fetch metadata into RAM
       const imageIds = await createImageIdsAndCacheMetaData({
@@ -32,32 +37,8 @@ function App() {
       // Instantiate a rendering engine
       const renderingEngineId = "myRenderingEngine"
       const renderingEngine = new RenderingEngine(renderingEngineId)
-      const viewportId = "CT_STACK"
+      const viewportId = "CT"
 
-      // const viewportInput = {
-      //   viewportId,
-      //   type: Enums.ViewportType.STACK,
-      //   element: elementRef.current,
-      //   defaultOptions: {
-      //     background: [0.2, 0, 0.2] as Types.RGB,
-      //   },
-      // }
-
-      // renderingEngine.enableElement(viewportInput)
-
-      // const viewport = renderingEngine.getViewport(
-      //   viewportId
-      // ) as Types.IStackViewport
-
-      // const stack = [imageIds[0]]
-
-      // viewport.setStack(stack)
-
-      // viewport.render()
-
-      // setTimeout(() => {
-      //   viewport.render()
-      // }, 1000)
 
       const viewportInput = {
         viewportId,
@@ -87,7 +68,6 @@ function App() {
 
       // Render the image
       viewport.render()
-
     }
 
     setup()
