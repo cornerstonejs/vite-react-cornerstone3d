@@ -33,7 +33,7 @@ export default defineConfig({
   plugins: [
     react(),
     // for dicom-parser
-    // viteCommonjs(),
+    viteCommonjs(),
   ],
   build: {
     rollupOptions: {
@@ -43,7 +43,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: [],
-    // include: ["dicom-parser"],
+    exclude: ["@cornerstonejs/dicom-image-loader"],
+    include: ["dicom-parser"],
   },
 })
