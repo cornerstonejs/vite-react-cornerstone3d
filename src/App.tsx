@@ -61,6 +61,7 @@ function App() {
       })
 
       // Set the volume to load
+      // @ts-ignore
       volume.load()
 
       // Set the volume on the viewport and it's default properties

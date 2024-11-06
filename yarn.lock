@@ -271,19 +271,19 @@
   resolved "https://registry.yarnpkg.com/@cornerstonejs/codec-openjph/-/codec-openjph-2.4.5.tgz#8690b61a86fa53ef38a70eee9d665a79229517c0"
   integrity sha512-MZCUy8VG0VG5Nl1l58+g+kH3LujAzLYTfJqkwpWI2gjSrGXnP6lgwyy4GmPRZWVoS40/B1LDNALK905cNWm+sg==
 
-"@cornerstonejs/core@^2.1.5":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@cornerstonejs/core/-/core-2.1.5.tgz#67d8af0aac34a7453dfba68a317c58a2e1b6891c"
-  integrity sha512-u7iwNrNnmiu+/adtPGZ74Z30ahmj3bJpnOlxJYmPTATg/Y2dyRPNqbnVfjT2O87nJczOhpJBMU4cDm580IlQEw==
+"@cornerstonejs/core@^2.1.16":
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/@cornerstonejs/core/-/core-2.1.16.tgz#398f27cb9fc769d51f23c5ce744078075e277aa7"
+  integrity sha512-D4g+CVGCFCg+K4otV/LJb76oerOlk9h8q7Exl7COX5OW1fKW/hf07bts9fKJZ3X8TLazOPjsYI5P6yVkjSu+Bw==
   dependencies:
     "@kitware/vtk.js" "32.1.0"
     comlink "^4.4.1"
     gl-matrix "^3.4.3"
 
-"@cornerstonejs/dicom-image-loader@^2.1.5":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@cornerstonejs/dicom-image-loader/-/dicom-image-loader-2.1.5.tgz#00998b364d3b42df3a98797ffb53c0ece28b9c2f"
-  integrity sha512-YiEnOiR0uLNa/VQT4mqZLy6w091O7+UHb4gzA+HTMV71ZUEODdlhvZIUaCH7S0HtkUvGiwLVOcCnuCESpVAyKQ==
+"@cornerstonejs/dicom-image-loader@^2.1.16":
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/@cornerstonejs/dicom-image-loader/-/dicom-image-loader-2.1.16.tgz#8117a0864c3e71fbfeba4cd88309aef1617842f8"
+  integrity sha512-i/vX6A44UNIkxzg3uiKfn4UnJz3INPKEJ5CnibBLRhl1N4UaYUdKrWjVeupx1S/yc0TwqxDCE7O5VtzMsD/Yqg==
   dependencies:
     "@cornerstonejs/codec-charls" "^1.2.3"
     "@cornerstonejs/codec-libjpeg-turbo-8bit" "^1.2.2"
@@ -293,10 +293,10 @@
     pako "^2.0.4"
     uuid "^9.0.0"
 
-"@cornerstonejs/tools@^2.1.5":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@cornerstonejs/tools/-/tools-2.1.5.tgz#b054fc51b802ade1413f0c4d6c55fcf202e2264b"
-  integrity sha512-tYa45syOrZHuCO7RPMo20TbG5qjin0yGga7ZKsbG5fLOjuQMfgda0HQQvzQP1ADSUbBdFkYpetbwGFC/M4P0kg==
+"@cornerstonejs/tools@^2.1.16":
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/@cornerstonejs/tools/-/tools-2.1.16.tgz#d68fe9aebea89f6f5b96028d55bebed240220196"
+  integrity sha512-9HcBbiEOOIJutNHia8Vgq5nLniVFs05VoGarTnpqZxSwDWkXjfllKGpj7AJHFOno/X1/lsbw04iV1/B7BTO6yg==
   dependencies:
     "@types/offscreencanvas" "2019.7.3"
     comlink "^4.4.1"

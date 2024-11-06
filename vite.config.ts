@@ -35,15 +35,15 @@ export default defineConfig({
     // for dicom-parser
     viteCommonjs(),
   ],
-  build: {
-    rollupOptions: {
-      output: {
-        format: "es",
-      },
-    },
-  },
+  // seems like only required in dev mode
   optimizeDeps: {
     exclude: ["@cornerstonejs/dicom-image-loader"],
     include: ["dicom-parser"],
+  },
+  worker: {
+    format: "es",
+    rollupOptions: {
+      external: ["@icr/polyseg-wasm"],
+    },
   },
 })
