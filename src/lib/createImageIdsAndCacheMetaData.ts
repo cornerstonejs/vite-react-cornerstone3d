@@ -2,7 +2,6 @@ import { api } from "dicomweb-client"
 import cornerstoneDICOMImageLoader from "@cornerstonejs/dicom-image-loader"
 
 /**
-/**
  * Uses dicomweb-client to fetch metadata of a study, cache it in cornerstone,
  * and return a list of imageIds for the frames.
  *
